@@ -1,0 +1,41 @@
+﻿@page
+@model MembernovaChallenge.Models.Requests.UserRequest
+@{
+    ViewData["Title"] = "Create user";
+}
+
+<body onload="createUserLoaded()">
+    <form>
+        <div class="form-group">
+            <label for="firstName" class="form-label">First name</label>
+            <input id="firstName" type="text" class="form-control" />
+            <small id="firstNameError" class="text-danger" hidden></small>
+        </div>
+
+        <div class="form-group">
+            <label for="lastName" class="form-label">Last name</label>
+            <input id="lastName" type="text" class="form-control" />
+            <small id="lastNameError" class="text-danger" hidden></small>
+        </div>
+
+        <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input id="email" type="email" class="form-control" />
+            <small id="emailError" class="text-danger" hidden></small>
+        </div>
+
+        <div class="form-group">
+            <select id="region" onchange="loadCountries()" class="form-control">
+                <option selected disabled hidden>Region</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <select id="country" class="form-control" disabled>
+                <option selected disabled hidden>Country</option>
+            </select>
+        </div>
+
+        <input type="button" class="btn btn-primary" onclick="sendUser()" value="Send" />
+    </form>
+</body>
