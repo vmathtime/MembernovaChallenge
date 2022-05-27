@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
+using MembernovaChallenge.Contracts.BusinessLogic;
+using MembernovaChallenge.Domain.Models;
 using MembernovaChallenge.Models.Requests;
 using MembernovaChallenge.Models.Responses;
-using MembernovaChallenge.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MembernovaChallenge.Controllers
@@ -11,25 +12,21 @@ namespace MembernovaChallenge.Controllers
     public class UserController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly ICountriesService _countriesService;
+        private readonly IUserBusinessLogic _userBusinessLogic;
 
-        public UserController(IMapper mapper, ICountriesService countriesService)
+        public UserController(IMapper mapper, IUserBusinessLogic userBusinessLogic)
         {
             _mapper = mapper;
-            _countriesService = countriesService;
+            _userBusinessLogic = userBusinessLogic;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] UserRequest request)
+        public async Task<ActionResult<UserResponse>> Create([FromBody] UserRequest request)
         {
-            var isCorrect = await _countriesService.CheckCountry(request.Country);
-            if(!isCorrect)
-            {
-                return BadRequest("Incorrect country name");
-            }
-
-            var response = _mapper.Map<UserResponse>(request);
-            return Ok(response);
+            var model = _mapper.Map<CreateUserModel>(request);
+            var user = await _userBusinessLogic.CreateUser(model);
+            var response = _mapper.Map<UserResponse>(user);
+            return response;
         }
     }
 }

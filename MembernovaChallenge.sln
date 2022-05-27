@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MembernovaChallenge", "MembernovaChallenge\MembernovaChallenge.csproj", "{FBF01224-5B2C-4CB7-A3F3-1253BB1F8F47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MembernovaChallenge", "MembernovaChallenge\MembernovaChallenge.csproj", "{FBF01224-5B2C-4CB7-A3F3-1253BB1F8F47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MembernovaChallenge.Contracts", "MembernovaChallenge.Contracts\MembernovaChallenge.Contracts.csproj", "{A401CAB4-2666-4E29-9952-BF58A8FB2CC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MembernovaChallenge.Domain", "MembernovaChallenge.Domain\MembernovaChallenge.Domain.csproj", "{2EF80446-1FB2-4EF1-ACBA-158BE4BFE012}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MembernovaChallenge.CountriesApi", "MembernovaChallenge.CountriesApi\MembernovaChallenge.CountriesApi.csproj", "{767347A1-614D-405E-B60E-B0921E1B0874}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MembernovaChallenge.Application", "MembernovaChallenge.Application\MembernovaChallenge.Application.csproj", "{CF7F30F9-B916-49F6-A910-080188D43B25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{FBF01224-5B2C-4CB7-A3F3-1253BB1F8F47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBF01224-5B2C-4CB7-A3F3-1253BB1F8F47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBF01224-5B2C-4CB7-A3F3-1253BB1F8F47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A401CAB4-2666-4E29-9952-BF58A8FB2CC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A401CAB4-2666-4E29-9952-BF58A8FB2CC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A401CAB4-2666-4E29-9952-BF58A8FB2CC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A401CAB4-2666-4E29-9952-BF58A8FB2CC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EF80446-1FB2-4EF1-ACBA-158BE4BFE012}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EF80446-1FB2-4EF1-ACBA-158BE4BFE012}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EF80446-1FB2-4EF1-ACBA-158BE4BFE012}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EF80446-1FB2-4EF1-ACBA-158BE4BFE012}.Release|Any CPU.Build.0 = Release|Any CPU
+		{767347A1-614D-405E-B60E-B0921E1B0874}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{767347A1-614D-405E-B60E-B0921E1B0874}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{767347A1-614D-405E-B60E-B0921E1B0874}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{767347A1-614D-405E-B60E-B0921E1B0874}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF7F30F9-B916-49F6-A910-080188D43B25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF7F30F9-B916-49F6-A910-080188D43B25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF7F30F9-B916-49F6-A910-080188D43B25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF7F30F9-B916-49F6-A910-080188D43B25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

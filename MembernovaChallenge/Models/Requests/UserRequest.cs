@@ -1,6 +1,4 @@
-﻿using MembernovaChallenge.Attributes;
-using MembernovaChallenge.Services.Contracts.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MembernovaChallenge.Models.Requests
 {
@@ -19,18 +17,18 @@ namespace MembernovaChallenge.Models.Requests
         [MaxLength(100)]
         public string Email { get; init; }
 
-        [EnumRequired(typeof(Region))]
-        public string Region { get; init; }
+        [Required]
+        public int? RegionId { get; init; }
 
         [Required]
         public string Country { get; init; }
 
-        public UserRequest(string firstName, string lastName, string email, string region, string country)
+        public UserRequest(string firstName, string lastName, string email, int? regionId, string country)
         {
             FirstName = firstName;
             LastName = lastName;
             Email = email;
-            Region = region;
+            RegionId = regionId;
             Country = country;
         }
     }

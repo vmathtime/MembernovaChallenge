@@ -1,5 +1,3 @@
-#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
@@ -8,6 +6,10 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["MembernovaChallenge/MembernovaChallenge.csproj", "MembernovaChallenge/"]
+COPY ["MembernovaChallenge.Application/MembernovaChallenge.Application.csproj", "MembernovaChallenge.Application/"]
+COPY ["MembernovaChallenge.Contracts/MembernovaChallenge.Contracts.csproj", "MembernovaChallenge.Contracts/"]
+COPY ["MembernovaChallenge.CountriesApi/MembernovaChallenge.CountriesApi.csproj", "MembernovaChallenge.CountriesApi/"]
+COPY ["MembernovaChallenge.Domain/MembernovaChallenge.Domain.csproj", "MembernovaChallenge.Domain/"]
 RUN dotnet restore "MembernovaChallenge/MembernovaChallenge.csproj"
 COPY . .
 WORKDIR "/src/MembernovaChallenge"

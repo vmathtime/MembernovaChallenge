@@ -1,4 +1,4 @@
-﻿namespace MembernovaChallenge.Settings
+﻿namespace MembernovaChallenge.Domain.Settings
 {
     public record CountriesApiSettings
     {

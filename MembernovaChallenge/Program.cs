@@ -1,12 +1,29 @@
+using AutoMapper;
+using MembernovaChallenge.Application.BusinessLogic;
+using MembernovaChallenge.Application.Mocks;
 using MembernovaChallenge.AutoMapper;
-using MembernovaChallenge.Services;
-using MembernovaChallenge.Services.Contracts;
-using MembernovaChallenge.Settings;
+using MembernovaChallenge.Contracts.BusinessLogic;
+using MembernovaChallenge.Contracts.Services;
+using MembernovaChallenge.CountriesApi;
+using MembernovaChallenge.Domain.Settings;
+using MembernovaChallenge.Extensions;
+using MembernovaChallenge.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Host.UseDefaultServiceProvider(options =>
+{
+    options.ValidateScopes = true;
+    options.ValidateOnBuild = true;
+});
+
 builder.Services.AddRazorPages();
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<ExceptionFilter>();
+}).AddControllersAsServices();
+
+builder.Services.AddExceptionResolvers();
 
 builder.Services.AddAutoMapper(config =>
 {
@@ -15,6 +32,12 @@ builder.Services.AddAutoMapper(config =>
 
 var countriesApiSettings = builder.Configuration.GetSection("CountriesApi").Get<CountriesApiSettings>();
 builder.Services.AddSingleton(countriesApiSettings);
+
+builder.Services.AddScoped<ICountryBusinessLogic, CountryBusinessLogic>();
+builder.Services.AddScoped<IRegionBusinessLogic, RegionBusinessLogic>();
+builder.Services.AddScoped<IUserBusinessLogic, UserBusinessLogic>();
+
+builder.Services.AddScoped<IUserService, UserServiceMock>();
 
 builder.Services.AddHttpClient<ICountriesService, ApiCountriesService>(httpClient =>
 {
@@ -27,6 +50,9 @@ builder.Services.AddHttpClient<ICountriesService, ApiCountriesService>(httpClien
 });
 
 var app = builder.Build();
+
+var mapper = app.Services.GetRequiredService<IMapper>();
+mapper.ConfigurationProvider.AssertConfigurationIsValid();
 
 if (!app.Environment.IsDevelopment())
 {

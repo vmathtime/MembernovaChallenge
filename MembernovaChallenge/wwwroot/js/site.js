@@ -7,7 +7,7 @@ function loadRegions() {
         url: "/api/region",
         type: "GET",
         success: function (data) {
-            data.forEach(el => $("#region").append("<option value='" + el + "'>" + el + "</option>"));
+            data.forEach(el => $("#region").append("<option value='" + el.id + "'>" + el.name + "</option>"));
         },
         error: function (data) {
             /*error handler*/
@@ -21,10 +21,10 @@ function loadCountries() {
     $("#country").append("<option selected disabled hidden>Country</option>")
     var region = $("#region").val();
     $.get({
-        url: "/api/country?region=" + region,
+        url: "/api/country?regionId=" + region,
         type: "GET",
         success: function (data) {
-            data.forEach(el => $("#country").append("<option value='" + el + "'>" + el + "</option>"));
+            data.forEach(el => $("#country").append("<option value='" + el.name + "'>" + el.name + "</option>"));
             $("#country").prop("disabled", false);
         },
         error: function (data) {
@@ -40,7 +40,7 @@ function sendUser() {
         firstName: $("#firstName").val(),
         lastName: $("#lastName").val(),
         email: $("#email").val(),
-        region: $("#region").val(),
+        regionId: $("#region").val(),
         country: $("#country").val()
     };
     var request = JSON.stringify(model);
@@ -106,7 +106,7 @@ function handleValidationError(json) {
         $("#emailError").prop("hidden", false);
     }
 
-    if (json.errors.Region !== undefined) {
+    if (json.errors.RegionId !== undefined) {
         $("#region").addClass("is-invalid");
     }
 

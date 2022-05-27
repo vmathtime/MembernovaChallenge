@@ -1,4 +1,6 @@
-﻿using MembernovaChallenge.Services.Contracts;
+﻿using AutoMapper;
+using MembernovaChallenge.Contracts.BusinessLogic;
+using MembernovaChallenge.Models.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MembernovaChallenge.Controllers
@@ -7,18 +9,11 @@ namespace MembernovaChallenge.Controllers
     [Route("api/[controller]")]
     public class RegionController : ControllerBase
     {
-        private readonly ICountriesService _countriesService;
-
-        public RegionController(ICountriesService countriesService)
-        {
-            _countriesService = countriesService;
-        }
-
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IReadOnlyList<RegionResponse>> Get([FromServices] IRegionBusinessLogic regionBusinessLogic, [FromServices] IMapper mapper)
         {
-            var regions = await _countriesService.GetRegions();
-            return Ok(regions);
+            var regions = await regionBusinessLogic.GetRegions();
+            return mapper.Map<IReadOnlyList<RegionResponse>>(regions);
         }
     }
 }
